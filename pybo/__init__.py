@@ -18,16 +18,16 @@ naming_convention = {
 db = SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))
 migrate = Migrate()
 
-#db = SQLAlchemy()
-#migrate = Migrate()
+# db = SQLAlchemy()
+# migrate = Migrate()
 
-#함수명으로 create_app 대신 다른 이름을 사용하면 정상으로 동작하지 않는다.
-#create_app은 플라스크 내부에서 정의된 함수명이다.
+# 함수명으로 create_app 대신 다른 이름을 사용하면 정상으로 동작하지 않는다.
+# create_app은 플라스크 내부에서 정의된 함수명이다.
 def create_app():
     app = Flask(__name__)
     app.config.from_object(config)
 
-    #ORM
+    # ORM
     db.init_app(app)
     if app.config['SQLALCHEMY_DATABASE_URI'].startswith("sqlite"):
         migrate.init_app(app, db, render_as_batch=True)
@@ -47,5 +47,5 @@ def create_app():
     app.jinja_env.filters['datetime'] = format_datetime
 
     # Markdown
-    Markdown(app, extentions = ['nl2br', 'fenced_code'])
+    Markdown(app, extentions=['nl2br', 'fenced_code'])
     return app
