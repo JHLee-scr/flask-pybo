@@ -72,5 +72,5 @@ def vote(answer_id):
         db.session.commit()
     return redirect('{}#answer_{}'.format(
         url_for('question.detail', question_id=_answer.question.id)
-                    , answer.id)
+                    , Answer.id)
     )
